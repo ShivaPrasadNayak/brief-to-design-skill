@@ -1,0 +1,117 @@
+<!doctype html>
+<!--
+  Direction Lab board — brief-to-design skill.
+  Shows three creative directions side by side so they can be compared as designs, not as lists.
+  Each .dir sets its own tokens (CSS vars) AND its own composition inside .mini slides:
+  directions must differ in layout, type, imagery and metaphor, not only colour.
+
+  Fill: for each direction replace name, rationale, swatches (hex + role + share), type specimen,
+  image direction, and the two mini slides (title + content) using the brief's real content.
+  Render: python ~/.claude/skills/brief-to-design/scripts/render.py lab.html --mode screen --width 1680
+  Mini slides are 1920x1080 designs scaled to 0.25 — write their CSS in full-size px.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- add each direction's fonts here -->
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #E9EBEF; color: #15181E; font: 400 15px/1.45 Inter, system-ui, sans-serif; padding: 40px; }
+header.board { display: flex; justify-content: space-between; align-items: end; margin-bottom: 28px; }
+header.board h1 { font: 700 30px/1.1 Inter, sans-serif; letter-spacing: -.02em; }
+header.board p { color: #5A6170; max-width: 760px; }
+.dirs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.dir { background: #fff; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.dir .tag { font: 700 12px/1 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #5A6170; }
+.dir h2 { font: 700 24px/1.15 Inter, sans-serif; letter-spacing: -.01em; }
+.dir .why { color: #3A4150; }
+.mini { width: 480px; height: 270px; overflow: hidden; border-radius: 8px; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08); }
+.mini > .s { width: 1920px; height: 1080px; transform: scale(.25); transform-origin: top left; position: relative; overflow: hidden; }
+.swatches { display: flex; height: 54px; border-radius: 8px; overflow: hidden; }
+.swatches div { display: flex; align-items: end; padding: 6px; font: 600 10px/1.2 Inter, sans-serif; }
+.legend { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 12px; color: #3A4150; }
+.legend b { font-family: ui-monospace, Menlo, monospace; font-weight: 600; }
+.type { border-top: 1px solid #E4E6EA; padding-top: 12px; }
+.meta { font-size: 13px; color: #3A4150; }
+.meta b { color: #15181E; }
+.verdict { margin-top: 28px; background: #fff; border-radius: 18px; padding: 24px; }
+.verdict table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.verdict th, .verdict td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ECEEF1; }
+.verdict td.score { font-variant-numeric: tabular-nums; }
+.pick { outline: 3px solid #15181E; }
+
+/* ===== Direction A tokens + mini-slide styles (example) ===== */
+.a { --bg:#F4F8FC; --dark:#123B66; --primary:#2563A6; --accent:#56C5E8; --text:#142536; --muted:#60758A; }
+.a .s { font-family: Inter, sans-serif; }
+/* ===== Direction B ===== */
+.b { --bg:#F5F5F2; --dark:#151B26; --primary:#3D4A5C; --accent:#A9B4C2; --text:#151B26; --muted:#6B7280; }
+.b .s { font-family: Georgia, serif; }
+/* ===== Direction C ===== */
+.c { --bg:#EEF0FF; --dark:#1B1464; --primary:#2E4BFF; --accent:#00D1FF; --text:#140F45; --muted:#5A5C86; }
+.c .s { font-family: Inter, sans-serif; }
+</style>
+</head>
+<body>
+<header class="board">
+  <div><h1>Project — three directions</h1><p>One line: what is being designed, for whom, and the single message every direction must carry.</p></div>
+  <p class="meta">Same content in each direction. Compare composition, type and imagery, not only colour.</p>
+</header>
+
+<div class="dirs">
+  <!-- ======= DIRECTION A (copy for B and C, then make them genuinely different) ======= -->
+  <article class="dir a">
+    <span class="tag">Direction A</span>
+    <h2>Concept name</h2>
+    <p class="why">Rationale: the idea behind it, the feeling it aims for, and why it fits this subject and audience. Mark interpretation as interpretation.</p>
+    <div class="mini"><div class="s" style="background:var(--dark);color:#fff">
+      <!-- full-size (1920x1080) title slide composition for this direction -->
+      <div style="position:absolute;left:120px;top:300px;font:800 120px/1 Inter;letter-spacing:-.03em;max-width:1200px">Title as a claim.</div>
+    </div></div>
+    <div class="mini"><div class="s" style="background:var(--bg);color:var(--text)">
+      <!-- full-size content slide composition for this direction -->
+      <div style="position:absolute;left:120px;top:110px;font:700 72px/1.05 Inter">Content headline.</div>
+    </div></div>
+    <div class="swatches">
+      <div style="flex:60;background:var(--bg);color:var(--muted)">bg 60%</div>
+      <div style="flex:25;background:var(--dark);color:#fff">dark 25%</div>
+      <div style="flex:10;background:var(--primary);color:#fff">10%</div>
+      <div style="flex:5;background:var(--accent)"></div>
+    </div>
+    <div class="legend">
+      <b>#F4F8FC</b><span>background — content slides</span>
+      <b>#123B66</b><span>primary dark — title, section slides</span>
+      <b>#2563A6</b><span>secondary — headings, links, bars</span>
+      <b>#56C5E8</b><span>accent — one highlight per slide</span>
+      <b>#142536</b><span>text · <b>#60758A</b> muted</span>
+    </div>
+    <div class="type"><span class="meta"><b>Type:</b> display / body faces + weights. <b>Imagery:</b> what kind, how treated. <b>Layout:</b> the composition principle. <b>Contrast:</b> results from contrast.py.</span></div>
+  </article>
+
+  <article class="dir b"><span class="tag">Direction B</span><h2>Concept name</h2><p class="why">…</p>
+    <div class="mini"><div class="s" style="background:var(--bg)"></div></div>
+    <div class="mini"><div class="s" style="background:var(--bg)"></div></div>
+  </article>
+  <article class="dir c"><span class="tag">Direction C</span><h2>Concept name</h2><p class="why">…</p>
+    <div class="mini"><div class="s" style="background:var(--dark)"></div></div>
+    <div class="mini"><div class="s" style="background:var(--bg)"></div></div>
+  </article>
+</div>
+
+<section class="verdict">
+  <h2 style="font:700 20px Inter;margin-bottom:10px">Comparison</h2>
+  <table>
+    <tr><th>Criterion</th><th>A</th><th>B</th><th>C</th></tr>
+    <tr><td>Relevance to subject</td><td class="score">–</td><td class="score">–</td><td class="score">–</td></tr>
+    <tr><td>Audience fit</td><td class="score">–</td><td class="score">–</td><td class="score">–</td></tr>
+    <tr><td>Readability & contrast</td><td class="score">–</td><td class="score">–</td><td class="score">–</td></tr>
+    <tr><td>Distinctiveness</td><td class="score">–</td><td class="score">–</td><td class="score">–</td></tr>
+    <tr><td>Holds up across 10+ slides/pages</td><td class="score">–</td><td class="score">–</td><td class="score">–</td></tr>
+  </table>
+  <p style="margin-top:12px"><b>Pick:</b> direction + one-sentence reason. Add class <code>pick</code> to the chosen .dir.</p>
+</section>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* notes.css — default styling for Markdown notes / one-pagers rendered by render.py (pandoc -> HTML -> PDF).
+   Copy next to the .md and edit the tokens to the project's design system; pass with: pandoc --css notes.css */
+:root {
+  --bg: #FFFFFF; --text: #17202B; --muted: #5C6773; --primary: #1F4E8C; --accent: #2BA5B5; --rule: #E3E7EC;
+  --font-display: "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  --font-body: Charter, "Iowan Old Style", Georgia, serif;
+}
+@page { size: A4; margin: 22mm 20mm; }
+html { background: var(--bg); }
+body { font: 400 11.5pt/1.55 var(--font-body); color: var(--text); max-width: 680px; margin: 48px auto; padding: 0 16px; }
+header#title-block-header { display: none; }  /* pandoc's auto title; the doc's own H1 leads */
+h1, h2, h3 { font-family: var(--font-display); color: var(--text); line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-size: 26pt; font-weight: 700; margin: 0 0 10pt; }
+h2 { font-size: 15pt; font-weight: 700; margin: 22pt 0 6pt; color: var(--primary); }
+h3 { font-size: 12pt; font-weight: 600; margin: 14pt 0 4pt; }
+p, li { margin: 0 0 7pt; }
+ul, ol { padding-left: 18pt; }
+li::marker { color: var(--accent); }
+strong { color: var(--text); }
+a { color: var(--primary); }
+blockquote { margin: 12pt 0; padding: 8pt 14pt; background: color-mix(in srgb, var(--accent) 9%, white); border-radius: 6px; font-style: italic; }
+table { border-collapse: collapse; width: 100%; font: 10pt/1.4 var(--font-display); margin: 10pt 0; }
+th { text-align: left; font-weight: 600; color: var(--muted); border-bottom: 1.5px solid var(--text); padding: 5pt 6pt; }
+td { border-bottom: 1px solid var(--rule); padding: 5pt 6pt; vertical-align: top; }
+code { font: 9.5pt ui-monospace, Menlo, monospace; background: #F2F4F7; padding: 1px 4px; border-radius: 4px; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 18pt 0; }
+img { max-width: 100%; border-radius: 6px; }
+@media print { body { margin: 0; max-width: none; } h2 { break-after: avoid; } table, blockquote { break-inside: avoid; } }
