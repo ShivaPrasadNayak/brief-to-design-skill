@@ -1,0 +1,269 @@
+<!doctype html>
+<!--
+  HTML deck shell — brief-to-design skill.
+  Copy this file, replace the tokens in :root with the chosen design system, and write slides as
+  <section class="slide" data-slide> ... </section>. Each slide is a fixed 1920x1080 canvas that is
+  scaled to fit any screen, so layouts never reflow; design in px at that size.
+
+  Controls: → ↓ Space PageDown = next · ← ↑ PageUp = back · Home/End · F = fullscreen · G = grid overview
+            click right/left half or swipe on touch · #5 in the URL opens slide 5 · Cmd/Ctrl+P prints one slide per page.
+  Render & QA: python <skill-dir>/scripts/render.py deck.html
+  Delete the example slides; keep the shell (style block "SHELL" + script) as is.
+-->
+<html lang="en" data-deck>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Wind — campaign pitch</title>
+<!-- Fonts: pick from references/layout-type.md. Remove the link if using system fonts only. -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#FFFFFF; --surface:#F3F3F1; --dark:#141414; --primary:#FF4A1C; --primary-ink:#D63E18; --accent:#2B59FF;
+  --text:#141414; --muted:#5E5E5E; --on-dark:#FFFFFF; --on-dark-muted:#B5B5B5; --border:#E2E2DE;
+  --font-display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif; --font-body:"Figtree", "Helvetica Neue", system-ui, sans-serif;
+  --margin:120px; --top:110px;
+}
+/* ===== SHELL (keep) ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #0b0d12; overflow: hidden; }
+body { font-family: var(--font-body); color: var(--text); -webkit-font-smoothing: antialiased; }
+.deck { position: fixed; inset: 0; display: grid; place-items: center; }
+.slide {
+  position: absolute; width: 1920px; height: 1080px; overflow: hidden;
+  background: var(--bg); transform-origin: center center;
+  opacity: 0; visibility: hidden; transition: opacity .45s ease, transform .45s ease;
+}
+.slide.active { opacity: 1; visibility: visible; }
+.progress { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--primary); transition: width .3s ease; z-index: 5; }
+.grid-view .deck { position: static; display: grid; grid-template-columns: repeat(auto-fill, 384px); gap: 24px; padding: 32px; place-items: start; overflow: auto; height: 100%; }
+.grid-view body, body.grid-view { overflow: auto; }
+.grid-view .slide { position: relative; opacity: 1; visibility: visible; transform: scale(.2) !important; transform-origin: top left; width: 1920px; margin: 0 -1536px -864px 0; cursor: pointer; outline: 6px solid transparent; }
+.grid-view .slide:hover { outline-color: var(--primary); }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+@media print {
+  @page { size: 1920px 1080px; margin: 0; }
+  html, body { background: none; overflow: visible; height: auto; }
+  .deck { position: static; display: block; }
+  .slide { position: relative; opacity: 1; visibility: visible; transform: none !important; break-after: page; }
+  .progress { display: none; }
+}
+
+
+.dark { background:var(--dark); color:var(--on-dark); }
+.eyebrow { font:700 22px/1 var(--font-body); letter-spacing:.14em; text-transform:uppercase; color:var(--primary-ink); }
+.dark .eyebrow { color:var(--primary); }
+.h-hero { font:800 136px/.92 var(--font-display); letter-spacing:-.045em; }
+.h-title { font:800 76px/1.0 var(--font-display); letter-spacing:-.035em; }
+.lead { font:400 32px/1.4 var(--font-body); color:var(--muted); }
+.dark .lead { color:var(--on-dark-muted); }
+.body { font:400 27px/1.45 var(--font-body); }
+.footer { position:absolute; left:var(--margin); right:var(--margin); bottom:52px; display:flex; justify-content:space-between; gap:40px; font:500 18px/1.2 var(--font-body); color:var(--muted); }
+.dark .footer { color:var(--on-dark-muted); }
+.photo { position:absolute; object-fit:cover; display:block; }
+.lanes { position:absolute; left:0; right:0; }
+.lanes i { display:block; height:5px; background:currentColor; opacity:.22; margin-bottom:84px; }
+.step-n { font:800 30px/1 var(--font-display); color:var(--primary-ink); }
+.step-t { font:800 46px/1.05 var(--font-display); letter-spacing:-.02em; margin:18px 0 14px; }
+.tag { font:700 18px/1 var(--font-body); letter-spacing:.12em; text-transform:uppercase; }
+.note { font:500 19px/1.35 var(--font-body); color:var(--muted); }
+</style>
+</head>
+<body>
+<main class="deck">
+
+<!-- 1 · Hero: the thesis + the material (worn shoes) -->
+<section class="slide" data-slide>
+  <img class="photo" src="assets/bfdc66a9.jpg" alt="Well-worn bright running shoes with loose laces" style="right:0;top:0;width:960px;height:1080px">
+  <div style="position:absolute;left:var(--margin);top:150px;width:760px">
+    <div class="eyebrow">Second Wind · campaign pitch</div>
+    <h1 class="h-hero" style="margin-top:44px">Every shoe has a second run in it.</h1>
+    <p class="lead" style="margin-top:44px;max-width:640px">A trade-in and resale campaign for Stride Again's refurbished running shoes.</p>
+  </div>
+  <div class="footer" style="right:1000px"><span>Stride Again · Brand marketing review</span><span>01</span></div>
+  <div class="note" style="position:absolute;right:28px;bottom:20px;color:#444;font-size:14px">Photo: “Running Shoes” by timtak, CC BY 2.0</div>
+</section>
+
+<!-- 2 · Audience truth: number as hero, photo as evidence of the drawer -->
+<section class="slide" data-slide>
+  <div style="position:absolute;left:var(--margin);top:var(--top);width:1100px">
+    <div class="eyebrow">The runner's truth</div>
+    <h2 class="h-title" style="margin-top:22px">Runners retire shoes with life still in them.</h2>
+  </div>
+  <div style="position:absolute;left:104px;top:430px;font:800 380px/.8 var(--font-display);letter-spacing:-.06em;color:var(--primary)">500</div>
+  <div style="position:absolute;left:var(--margin);top:780px;width:820px">
+    <p class="body"><b>km</b> — when most runners swap pairs (common guidance: 480–800 km). The foam wears out first; uppers and outsoles often have more to give.</p>
+  </div>
+  <img class="photo" src="assets/7a636c54.jpg" alt="Two pairs of retired running shoes on a wooden floor" style="left:1080px;top:330px;width:720px;height:560px;border-radius:24px">
+  <div class="note" style="position:absolute;left:1080px;top:906px;width:720px">The retirement drawer: most pairs end up here or in landfill. Photo: “old running shoes” by yoppy, CC BY 2.0</div>
+  <div class="footer"><span>Second Wind</span><span>02</span></div>
+</section>
+
+<!-- 3 · Tension: dark stage, two opposing voices -->
+<section class="slide dark" data-slide>
+  <div style="position:absolute;left:var(--margin);top:var(--top)">
+    <div class="eyebrow">The tension</div>
+    <h2 class="h-hero" style="margin-top:36px;max-width:1500px;font-size:120px">Guilt says keep them. <span style="color:var(--primary)">Hassle says bin them.</span></h2>
+  </div>
+  <div style="position:absolute;left:var(--margin);top:600px;width:780px">
+    <div class="tag" style="color:var(--primary);margin-bottom:28px">Keep</div><p style="font:500 54px/1.2 var(--font-display);letter-spacing:-.01em">“They’ve got miles left. Feels wrong to throw them out.”</p>
+  </div>
+  <div style="position:absolute;left:1020px;top:600px;width:780px">
+    <div class="tag" style="color:var(--primary);margin-bottom:28px">Bin</div><p style="font:500 54px/1.2 var(--font-display);letter-spacing:-.01em">“Photographing, listing, shipping used shoes? Not worth ₹800.”</p>
+  </div>
+  <div class="footer"><span>Illustrative voices built from the brief — validate in 8–10 runner interviews before launch</span><span>03</span></div>
+</section>
+
+<!-- 4 · Proposition + mechanism (numbered because it is a sequence) -->
+<section class="slide" data-slide>
+  <div style="position:absolute;left:var(--margin);top:var(--top);width:1500px">
+    <div class="eyebrow">The proposition</div>
+    <h2 class="h-title" style="margin-top:22px">Trade in at 500 km. Someone runs again for half.</h2>
+  </div>
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:560px;display:grid;grid-template-columns:repeat(3,1fr);gap:64px">
+    <div><div class="step-n">01 · Drop</div><div class="step-t">Any store, any brand</div><p class="body" style="color:var(--muted)">Hand in a pair; get store credit toward your next shoe on the spot.</p></div>
+    <div><div class="step-n">02 · Restore</div><div class="step-t">Cleaned, graded, re-laced</div><p class="body" style="color:var(--muted)">New insoles and laces; only pairs that pass a sole-wear check go back on sale.</p></div>
+    <div><div class="step-n">03 · Run again</div><div class="step-t">Resold at ~50%</div><p class="body" style="color:var(--muted)">A new runner gets a proven shoe; the rest are recycled, not dumped.</p></div>
+  </div>
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:500px;height:4px;background:var(--border)"></div>
+  <div style="position:absolute;left:var(--margin);width:560px;top:500px;height:4px;background:var(--primary)"></div>
+  <div class="footer"><span>Second Wind · credit and price levels are proposals</span><span>04</span></div>
+</section>
+
+<!-- 5 · Signature: the big idea — every pair carries its mileage (lane lines borrowed from Direction B) -->
+<section class="slide" data-slide style="background:var(--primary);color:var(--dark)">
+  <div class="lanes" style="top:150px;color:#fff"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div style="position:absolute;left:var(--margin);top:var(--top);width:820px">
+    <div class="eyebrow" style="color:var(--dark)">The big idea</div>
+    <h2 class="h-hero" style="margin-top:36px;font-size:124px">Every pair carries its mileage.</h2>
+    <p style="font:500 32px/1.4 var(--font-body);margin-top:40px;max-width:700px">Each restored shoe gets a hang-tag with the distance its first runner logged. The number is the ad.</p>
+  </div>
+  <div style="position:absolute;left:1170px;top:150px;width:520px;height:780px;background:#fff;border-radius:36px;box-shadow:0 30px 80px rgba(0,0,0,.25);padding:64px 56px;transform:rotate(4deg)">
+    <div style="width:40px;height:40px;border-radius:50%;border:6px solid var(--border);margin:0 auto 40px"></div>
+    <div class="tag" style="color:var(--muted)">Previously run</div>
+    <div style="font:800 180px/.9 var(--font-display);letter-spacing:-.05em;color:var(--dark);margin-top:16px">412</div>
+    <div style="font:800 56px/1 var(--font-display);color:var(--primary-ink)">km</div>
+    <div style="height:3px;background:var(--border);margin:44px 0"></div>
+    <div style="font:800 54px/1.0 var(--font-display);letter-spacing:-.02em">Your turn.</div>
+    <div class="note" style="margin-top:22px">Stride Again · Restored · Grade A</div>
+  </div>
+  <div class="footer" style="color:var(--dark)"><span>Concept mock-up — tag design</span><span>05</span></div>
+</section>
+
+<!-- 6 · Executions: three formats, three sizes -->
+<section class="slide" data-slide style="background:var(--surface)">
+  <div style="position:absolute;left:var(--margin);top:var(--top)">
+    <div class="eyebrow">How it shows up</div>
+    <h2 class="h-title" style="margin-top:22px">One number, three places.</h2>
+  </div>
+  <!-- OOH poster -->
+  <div style="position:absolute;left:var(--margin);top:330px;width:520px;height:590px;background:var(--dark);border-radius:20px;overflow:hidden">
+    <img src="assets/bfdc66a9.jpg" alt="" style="width:100%;height:330px;object-fit:cover">
+    <div style="padding:30px 34px;color:#fff"><div style="font:800 46px/1 var(--font-display);letter-spacing:-.02em">These ran a half marathon.<br><span style="color:var(--primary)">Ready for yours?</span></div><div class="tag" style="margin-top:24px;color:var(--on-dark-muted);font-size:15px">Second Wind · from ₹2,499</div></div>
+  </div>
+  <div class="tag" style="position:absolute;left:var(--margin);top:950px;color:var(--muted);font-size:16px">Bus shelter · 6-sheet</div>
+  <!-- Story -->
+  <div style="position:absolute;left:740px;top:330px;width:340px;height:590px;border-radius:52px;background:var(--dark);padding:16px">
+    <div style="width:100%;height:100%;border-radius:40px;background:var(--primary);position:relative;overflow:hidden">
+      <div class="lanes" style="top:330px;color:#fff"><i style="margin-bottom:50px"></i><i style="margin-bottom:50px"></i><i></i></div>
+      <div style="position:absolute;left:32px;top:60px;right:28px;font:800 50px/1 var(--font-display);color:var(--dark);letter-spacing:-.02em">Post your shoes’ km.</div>
+      <div style="position:absolute;left:32px;top:200px;font:700 30px/1.2 var(--font-body);color:#fff">#SecondWindKm</div>
+      <div style="position:absolute;left:32px;right:32px;bottom:44px;background:#fff;border-radius:999px;padding:18px;text-align:center;font:700 24px var(--font-body)">Find a drop-off</div>
+    </div>
+  </div>
+  <div class="tag" style="position:absolute;left:740px;top:950px;color:var(--muted);font-size:16px">Instagram story · challenge</div>
+  <!-- Race-day booth -->
+  <img src="assets/5bfb0a6d.jpg" alt="Crowd of runners along a riverside road during a city race" style="position:absolute;left:1150px;top:330px;width:650px;height:440px;object-fit:cover;border-radius:20px">
+  <div style="position:absolute;left:1150px;top:800px;width:650px">
+    <div style="font:800 40px/1.05 var(--font-display);letter-spacing:-.02em">Finish-line trade-in booth</div>
+    <p class="note" style="margin-top:12px">Swap the shoes you just raced in for credit, while the medal is still around your neck.</p>
+  </div>
+  <div class="note" style="position:absolute;right:28px;bottom:20px;font-size:14px">Photos: “Running Shoes” by timtak, CC BY 2.0 · “2015EUNAP68” by Európa Pont, CC BY 2.0</div>
+  <div class="note" style="position:absolute;right:var(--margin);top:120px;font:500 18px var(--font-body)">06</div>
+</section>
+
+<!-- 7 · Channels & moments on a track -->
+<section class="slide" data-slide>
+  <div style="position:absolute;left:var(--margin);top:var(--top);width:1500px">
+    <div class="eyebrow">Channels & moments</div>
+    <h2 class="h-title" style="margin-top:22px">Ride the race calendar, not the media calendar.</h2>
+  </div>
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:560px;height:6px;border-radius:3px;background:var(--border)"></div>
+  <div style="position:absolute;left:var(--margin);right:var(--margin);top:530px;display:grid;grid-template-columns:repeat(3,1fr);gap:64px">
+    <div><div style="width:66px;height:66px;border-radius:50%;background:#fff;border:6px solid var(--dark)"></div>
+      <div class="tag" style="margin-top:34px;color:var(--primary-ink)">Pre-season · 6 weeks out</div>
+      <div class="step-t" style="font-size:40px">Run-club drop-off points</div>
+      <p class="body" style="color:var(--muted);font-size:25px">Partner with 20 run clubs as collection points; both referrer and new runner get credit.</p></div>
+    <div><div style="width:66px;height:66px;border-radius:50%;background:var(--primary)"></div>
+      <div class="tag" style="margin-top:34px;color:var(--primary-ink)">Race week</div>
+      <div class="step-t" style="font-size:40px">Finish-line booths + tags</div>
+      <p class="body" style="color:var(--muted);font-size:25px">Sponsor the trade-in zone at two city races; mileage tags on display pairs at the expo.</p></div>
+    <div><div style="width:66px;height:66px;border-radius:50%;background:var(--dark)"></div>
+      <div class="tag" style="margin-top:34px;color:var(--primary-ink)">Post-race · 4 weeks</div>
+      <div class="step-t" style="font-size:40px">#SecondWindKm challenge</div>
+      <p class="body" style="color:var(--muted);font-size:25px">Runners post their retired pair’s total km; the highest-mileage pair each week wins a restored set.</p></div>
+  </div>
+  <div class="footer"><span>Tactics adapted from the marketing-ideas library: community, community sponsorship, challenges, two-sided referrals</span><span>07</span></div>
+</section>
+
+<!-- 8 · Ask: dark close -->
+<section class="slide dark" data-slide>
+  <div style="position:absolute;left:var(--margin);top:var(--top);width:900px">
+    <div class="eyebrow">The ask</div>
+    <h2 class="h-hero" style="margin-top:36px;font-size:112px">Approve a 12-week pilot in two cities.</h2>
+  </div>
+  <div style="position:absolute;left:1120px;top:var(--top);width:680px;display:grid;gap:56px;padding-top:70px">
+    <div><div style="font:800 110px/.9 var(--font-display);color:var(--primary);letter-spacing:-.04em">10,000</div><div class="lead" style="font-size:26px;margin-top:10px">pairs traded in</div></div>
+    <div><div style="font:800 110px/.9 var(--font-display);color:#fff;letter-spacing:-.04em">70%</div><div class="lead" style="font-size:26px;margin-top:10px">of restored pairs resold within 30 days</div></div>
+    <div><div style="font:800 110px/.9 var(--font-display);color:#fff;letter-spacing:-.04em">1 in 4</div><div class="lead" style="font-size:26px;margin-top:10px">trade-ins convert to a new-shoe purchase</div></div>
+  </div>
+  <div style="position:absolute;left:var(--margin);top:620px;width:860px">
+    <div class="tag" style="color:var(--primary);margin-bottom:26px">Next four weeks</div><ol class="body" style="color:var(--on-dark-muted);padding-left:36px;line-height:1.7"><li>Pick two pilot cities with spring races</li><li>Sign 20 run clubs as drop-off points</li><li>Stand up the grading and restore line</li><li>Finalise the mileage tag design</li></ol>
+  </div>
+  <div class="footer"><span>Targets are proposals for discussion, not forecasts</span><span>08</span></div>
+</section>
+
+</main>
+<div class="progress"></div>
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('[data-slide]')];
+  const bar = document.querySelector('.progress');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+  const fit = () => {
+    if (document.documentElement.classList.contains('grid-view')) return;
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    slides.forEach(el => el.style.transform = `scale(${s})`);
+  };
+  const show = n => {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((el, k) => { el.classList.toggle('active', k === i); el.setAttribute('aria-hidden', k !== i); });
+    bar.style.width = `${(i + 1) / slides.length * 100}%`;
+    history.replaceState(null, '', '#' + (i + 1));
+  };
+  const grid = on => { document.documentElement.classList.toggle('grid-view', on); if (!on) fit(); };
+  addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    else if (['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+    else if (e.key === 'g' || e.key === 'G' || (e.key === 'Escape' && document.documentElement.classList.contains('grid-view'))) grid(!document.documentElement.classList.contains('grid-view'));
+  });
+  addEventListener('click', e => {
+    const s = e.target.closest('[data-slide]');
+    if (document.documentElement.classList.contains('grid-view')) { if (s) { grid(false); show(slides.indexOf(s)); } return; }
+    if (e.target.closest('a,button,input,video')) return;
+    show(i + (e.clientX > innerWidth / 2 ? 1 : -1));
+  });
+  let x0 = null;
+  addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  addEventListener('resize', fit);
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
