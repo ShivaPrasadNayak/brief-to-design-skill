@@ -1,0 +1,21 @@
+{
+  "name": "brief-to-design-skill",
+  "owner": { "name": "Shiva Prasad Nayak", "url": "https://github.com/ShivaPrasadNayak" },
+  "metadata": {
+    "description": "Agent Skill that turns a brief into a designed PowerPoint, HTML slide deck, Word document, notes or landing page, with a three-direction palette lab and render-and-fix QA.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "brief-to-design",
+      "source": "./",
+      "description": "Creative-director workflow for AI agents: understand the brief and the name's meaning, explore three visual directions, set a design system, build PPTX/HTML/DOCX/MD output, then render and fix it.",
+      "version": "1.0.0",
+      "author": { "name": "Shiva Prasad Nayak" },
+      "license": "MIT",
+      "keywords": ["presentation", "pptx", "powerpoint", "slides", "html-slides", "docx", "design-system", "color-palette", "branding", "agent-skills"],
+      "category": "design",
+      "strict": false
+    }
+  ]
+}

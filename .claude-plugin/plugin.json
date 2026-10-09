@@ -1,0 +1,11 @@
+{
+  "name": "brief-to-design",
+  "description": "Turn a brief into a designed PowerPoint, HTML slide deck, Word document, notes or landing page. Three rendered visual directions, a real design system, and a render-and-fix QA loop.",
+  "version": "1.0.0",
+  "author": { "name": "Shiva Prasad Nayak", "url": "https://github.com/ShivaPrasadNayak" },
+  "homepage": "https://github.com/ShivaPrasadNayak/brief-to-design-skill",
+  "repository": "https://github.com/ShivaPrasadNayak/brief-to-design-skill",
+  "license": "MIT",
+  "keywords": ["presentation", "pptx", "powerpoint", "slides", "html-slides", "docx", "design-system", "color-palette", "branding", "agent-skills"],
+  "skills": "./skills/"
+}
