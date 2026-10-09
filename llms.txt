@@ -1,0 +1,18 @@
+# Brief to Design
+
+> Brief to Design is a free, MIT-licensed Agent Skill (SKILL.md) that makes AI assistants such as Claude Code, Claude.ai, OpenAI Codex, GitHub Copilot, Cursor and Gemini CLI work like a creative director. It turns a brief or notes into a designed PowerPoint (PPTX), HTML slide deck, Word document (DOCX), Markdown notes or landing page. It researches what a name or subject means, explores three visual directions with real colour palettes (Direction Lab), sets a design system, builds the file, then renders every page and fixes defects before delivery.
+
+## Install
+- [Install guide for every tool](docs/INSTALL.md): `npx skills add ShivaPrasadNayak/brief-to-design-skill`
+
+## Docs
+- [README](README.md): what it does, examples, FAQ
+- [SKILL.md](skills/brief-to-design/SKILL.md): the workflow the agent follows
+- [Colour and palette method](skills/brief-to-design/references/color.md)
+- [Output formats](skills/brief-to-design/references/formats.md)
+- [Worked examples](skills/brief-to-design/examples/worked-examples.md)
+
+## Examples
+- [Corporate PowerPoint](examples/outputs/meridian-platform-proposal.pptx)
+- [Marketing HTML deck](examples/outputs/second-wind-html/index.html)
+- [Brand concept PowerPoint](examples/outputs/saarthi-brand-concept.pptx)
